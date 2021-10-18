@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using AmpleChat_API.Database;
+using AmpleChat_API.Services;
 
 namespace AmpleChat_API
 {
@@ -33,6 +34,8 @@ namespace AmpleChat_API
             services.AddDbContext<DatabaseService>(config => {
                 config.UseSqlServer(Configuration["ConnectionStrings:DEV"]);
             });
+
+            services.AddTransient<UserService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
