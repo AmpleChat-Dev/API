@@ -12,8 +12,6 @@ namespace AmpleChat_API_UnitTest
 {
     public class UserUnitTest : IDisposable
     {
-        private readonly DatabaseService DatabaseService;
-        
         private static RegisterModel CreateValidRegisterModel()
         {
             return new RegisterModel {
@@ -34,13 +32,17 @@ namespace AmpleChat_API_UnitTest
 
         public UserUnitTest()
         {
-            DatabaseService = new DatabaseService(new DbContextOptionsBuilder<DatabaseService>().UseInMemoryDatabase(databaseName: "test_db").Options);
+        }
+
+        public static DatabaseService CreateDbService(string db)
+        {
+            return new DatabaseService(new DbContextOptionsBuilder<DatabaseService>().UseInMemoryDatabase(databaseName: db).Options);
         }
 
         [Fact(DisplayName = "Create a user with valid data, user should be created")]
         public async void Create_Valid_User()
         {
-            var userService = new UserService(DatabaseService);
+            var userService = new UserService(CreateDbService("test1"));
 
             var userController = new UserController(userService);
 
@@ -54,7 +56,7 @@ namespace AmpleChat_API_UnitTest
         [Fact(DisplayName = "Creat a user but with invalid data, user should not be created")]
         public async void Create_InValid_User()
         {
-            var userService = new UserService(DatabaseService);
+            var userService = new UserService(CreateDbService("test2"));
 
             var userController = new UserController(userService);
 
@@ -68,7 +70,7 @@ namespace AmpleChat_API_UnitTest
         [Fact(DisplayName = "Create a user and try to create that exact same user, should not create the 2nd user")]
         public async void Create_Duplicate_User()
         {
-            var userService = new UserService(DatabaseService);
+            var userService = new UserService(CreateDbService("test3"));
 
             var userController = new UserController(userService);
 
@@ -86,10 +88,6 @@ namespace AmpleChat_API_UnitTest
         // Delete all users from the db 
         public void Dispose()
         {
-            var allUsers = DatabaseService.Users.ToList();
-
-            foreach (var user in allUsers)
-                DatabaseService.Users.Remove(user);
         }
 
     }
