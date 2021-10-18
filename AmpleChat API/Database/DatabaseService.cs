@@ -33,7 +33,7 @@ namespace AmpleChat_API.Database
                 .HasMany(i => i.ContactRequests)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
 
             // One to many, user & message
@@ -41,7 +41,7 @@ namespace AmpleChat_API.Database
                 .HasMany(i => i.Messages)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
