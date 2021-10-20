@@ -19,7 +19,6 @@ namespace AmpleChat_API.Controllers
         [HttpPost("new")]
         public async Task<IActionResult> CreateUser([FromBody] RegisterModel model)
         {
-
             if (!ModelState.IsValid || !model.IsValid())
                 return BadRequest("Model not complete");
 
