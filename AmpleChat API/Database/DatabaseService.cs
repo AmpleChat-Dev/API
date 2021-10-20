@@ -17,19 +17,19 @@ namespace AmpleChat_API.Database
            
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelbuilder);
 
             // One to many, user & contacts
-            builder.Entity<User>()
+            modelbuilder.Entity<User>()
                 .HasMany(i => i.Contacts)
                 .WithOne()
                 .OnDelete(DeleteBehavior.NoAction);
 
 
             // One to many, user & contactrequest
-            builder.Entity<User>()
+            modelbuilder.Entity<User>()
                 .HasMany(i => i.ContactRequests)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)
@@ -37,7 +37,7 @@ namespace AmpleChat_API.Database
 
 
             // One to many, user & message
-            builder.Entity<User>()
+            modelbuilder.Entity<User>()
                 .HasMany(i => i.Messages)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)
