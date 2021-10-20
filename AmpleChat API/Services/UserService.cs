@@ -33,6 +33,16 @@ namespace AmpleChat_API.Services
             return true;
         }
 
+        public bool LoginAccount(LoginModel model)
+        {
+            var user = databaseService.Users.Where(i => i.UserName == model.UserNameOrEmail || i.Email == model.UserNameOrEmail).FirstOrDefault();
+
+            if (user == null)
+                return false;
+
+            return Verify(model.Password, user.Password);
+        }
+
         public bool UserExists(string email, string username)
         {
             var result = databaseService.Users.Where(i => i.Email == email || i.UserName == username).FirstOrDefault();
