@@ -2,5 +2,5 @@ projectKey=AmpleChat-API
 serverUrl=http://localhost:9000
 serverVersion=9.1.0.47736
 dashboardUrl=http://localhost:9000/dashboard?id=AmpleChat-API
-ceTaskId=AXyerKURa1I0dJ8KjWJs
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXyerKURa1I0dJ8KjWJs
+ceTaskId=AXyerwY5a1I0dJ8KjWJt
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXyerwY5a1I0dJ8KjWJt
