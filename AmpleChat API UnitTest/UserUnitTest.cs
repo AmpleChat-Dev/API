@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using AmpleChat_API.Controllers;
@@ -10,14 +9,32 @@ using Xunit;
 
 namespace AmpleChat_API_UnitTest
 {
-    public class UserUnitTest : IDisposable
+    public class UserUnitTest
     {
         private static RegisterModel CreateValidRegisterModel()
         {
             return new RegisterModel {
                 Email = "test@amplechat.com",
-                Password = "P@ssW0rd!",
+                Password = "P@ssW0rd!654654564",
                 UserName = "sickusername"
+            };
+        }
+
+        private static LoginModel CreateValidLoginModelUserName(RegisterModel model)
+        {
+            return new LoginModel
+            {
+                UserNameOrEmail = model.UserName,
+                Password = model.Password
+            };
+        }
+
+        private static LoginModel CreateValidLoginModelEmail(RegisterModel model)
+        {
+            return new LoginModel
+            {
+                UserNameOrEmail = model.Email,
+                Password = model.Password
             };
         }
 
@@ -48,7 +65,7 @@ namespace AmpleChat_API_UnitTest
 
             var model = CreateValidRegisterModel();
 
-            var createRequest = (OkObjectResult) await userController.CreateUser(model);
+            var createRequest = (ObjectResult) await userController.CreateUser(model);
 
             Assert.Equal(200, createRequest.StatusCode);
         }
@@ -62,7 +79,7 @@ namespace AmpleChat_API_UnitTest
 
             var model = CreateInValidRegisterModel();
 
-            var createRequest = (BadRequestObjectResult) await userController.CreateUser(model);
+            var createRequest = (ObjectResult) await userController.CreateUser(model);
 
             Assert.Equal(400, createRequest.StatusCode.Value);
         }
@@ -76,19 +93,34 @@ namespace AmpleChat_API_UnitTest
 
             var model = CreateValidRegisterModel();
 
-            var createRequest = (OkObjectResult)await userController.CreateUser(model);
+            var createRequest = (ObjectResult)await userController.CreateUser(model);
 
             Assert.Equal(200, createRequest.StatusCode.Value);
 
-            var createRequest2 = (BadRequestObjectResult) await userController.CreateUser(model);
+            var createRequest2 = (ObjectResult) await userController.CreateUser(model);
 
             Assert.Equal(400, createRequest2.StatusCode);
         }
 
-        // Delete all users from the db 
-        public void Dispose()
+        [Fact(DisplayName = "Login after creating an account")]
+        public async void Login() 
         {
-        }
+            var userService = new UserService(CreateDbService("test4"));
 
+            var userController = new UserController(userService);
+
+            var model = CreateValidRegisterModel();
+
+            var createRequest = (ObjectResult)await userController.CreateUser(model);
+
+            Assert.Equal(200, createRequest.StatusCode.Value);
+
+            var loginRequestUserName = (ObjectResult) userController.SignIn(CreateValidLoginModelUserName(model));
+
+            var loginRequestEmail = (ObjectResult) userController.SignIn(CreateValidLoginModelEmail(model));
+
+            Assert.Equal(200, loginRequestUserName.StatusCode);
+            Assert.Equal(200, loginRequestEmail.StatusCode);
+        }
     }
 }
