@@ -15,7 +15,17 @@ namespace AmpleChat_API.Services
             databaseService = dbs;
         }
 
-        public async Task<bool> CreateAccount(RegisterModel model)
+        public bool SingIn(LoginModel model)
+        {
+            if (!UserExists(model.UserNameOrEmail, model.UserNameOrEmail))
+                return false;
+
+            var user = databaseService.Users.Where(i => i.Email == model.UserNameOrEmail || i.UserName == model.UserNameOrEmail).FirstOrDefault();
+
+            return Verify(model.Password, user.Password);
+        }
+
+        public async Task<bool> SignUp(RegisterModel model)
         {
             // need to check  how secure the password is
             // hash password

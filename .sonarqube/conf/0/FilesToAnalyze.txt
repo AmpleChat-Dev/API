@@ -1,0 +1,18 @@
+﻿C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Controllers\UserController.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Database\DatabaseService.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Database\Models\ChatMessage.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Database\Models\ContactRequest.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Database\Models\User.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Migrations\20211011221449_Initial.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Migrations\20211011221449_Initial.Designer.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Migrations\DatabaseServiceModelSnapshot.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Program.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Services\Models\LoginModel.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Services\Models\RegisterModel.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Services\UserService.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Startup.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\obj\Debug\net5.0\AmpleChat API.AssemblyInfo.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\obj\Debug\net5.0\AmpleChat API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\appsettings.Development.json
+C:\Users\boris\source\repos\AmpleChat\API\AmpleChat API\AmpleChat API\Properties\launchSettings.json

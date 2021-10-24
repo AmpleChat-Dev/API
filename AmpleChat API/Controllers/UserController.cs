@@ -16,7 +16,19 @@ namespace AmpleChat_API.Controllers
             userService = uss;
         }
 
-        [HttpPost("new")]
+        [HttpPost]
+        public IActionResult SignIn([FromBody] LoginModel model)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest("Model not complete");
+
+            if (!userService.SingIn(model))
+                return BadRequest("Login failed");
+
+            return Ok("Login success");
+        }
+
+        [HttpPut]
         public async Task<IActionResult> CreateUser([FromBody] RegisterModel model)
         {
             if (!ModelState.IsValid || !model.IsValid())
@@ -25,7 +37,7 @@ namespace AmpleChat_API.Controllers
             if (userService.UserExists(model.Email, model.UserName))
                 return BadRequest("This email/username has already been taken");
 
-            var userCreated = await userService.CreateAccount(model);
+            var userCreated = await userService.SignUp(model);
              
             if (userCreated)
                 return Ok("User created");
