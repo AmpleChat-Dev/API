@@ -527,3 +527,4 @@ obj/
 # End of https://www.toptal.com/developers/gitignore/api/csharp,dotnetcore,aspnetcore
 AmpleChat API/appsettings.json
 AmpleChat API/appsettings.Development.json
+docker-compose.yml
