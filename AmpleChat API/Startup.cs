@@ -31,10 +31,15 @@ namespace AmpleChat_API
             });
 #endif
 
+#if !DEBUG
+            services.AddDbContext<DatabaseService>(config => {
+                config.UseSqlServer(Configuration["ConnectionStrings:DOCKER"]);
+            });
+#else
             services.AddDbContext<DatabaseService>(config => {
                 config.UseSqlServer(Configuration["ConnectionStrings:DEV"]);
             });
-
+#endif
             services.AddTransient<UserService>();
 
             services.AddControllers();
