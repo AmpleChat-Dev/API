@@ -9,5 +9,13 @@ namespace AmpleChat_API.Services.Models
 
         [Required]
         public string Password { get; set; }
+
+        public bool IsValid()
+        {
+            var usernameOrEmail = !string.IsNullOrEmpty(UserNameOrEmail);
+            var password = !string.IsNullOrEmpty(Password);
+
+            return usernameOrEmail && password;
+        }
     }
 }

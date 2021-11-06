@@ -33,5 +33,22 @@ namespace AmpleChat_API.Controllers
             return BadRequest("Could not create user");
         }
 
+        [HttpPost("login")]
+        public IActionResult LoginUser([FromBody] LoginModel model)
+        {
+            if (!ModelState.IsValid || !model.IsValid())
+                return BadRequest("Model not complete");
+
+            if (!userService.UserExists(model.UserNameOrEmail, model.UserNameOrEmail))
+                return BadRequest("This email/username does not exists");
+
+            var loginResult = userService.LoginAccount(model);
+
+            if (loginResult)
+                return Ok("User logged in!");
+
+            return BadRequest("Could not login user");
+        }
+
     }
 }

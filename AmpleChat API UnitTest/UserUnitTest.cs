@@ -10,7 +10,7 @@ using Xunit;
 
 namespace AmpleChat_API_UnitTest
 {
-    public class UserUnitTest : IDisposable
+    public class UserUnitTest
     {
         private static RegisterModel CreateValidRegisterModel()
         {
@@ -85,10 +85,47 @@ namespace AmpleChat_API_UnitTest
             Assert.Equal(400, createRequest2.StatusCode);
         }
 
-        // Delete all users from the db 
-        public void Dispose()
+        [Fact(DisplayName = "Login a existing user with his email credentials")]
+        public async void Login_Valid_User_Email()
         {
+            var userService = new UserService(CreateDbService("test3"));
+
+            var userController = new UserController(userService);
+
+            var model = CreateValidRegisterModel();
+
+            var createRequest = (OkObjectResult)await userController.CreateUser(model);
+
+            Assert.Equal(200, createRequest.StatusCode.Value);
+
+            var loginRequest = (OkObjectResult) userController.LoginUser(new LoginModel {
+                UserNameOrEmail = model.Email,
+                Password = model.Password
+            });
+
+            Assert.Equal(200, loginRequest.StatusCode.Value);
         }
 
+        [Fact(DisplayName = "Login a existing user with his username credentials")]
+        public async void Login_Valid_User_Username()
+        {
+            var userService = new UserService(CreateDbService("test3"));
+
+            var userController = new UserController(userService);
+
+            var model = CreateValidRegisterModel();
+
+            var createRequest = (OkObjectResult)await userController.CreateUser(model);
+
+            Assert.Equal(200, createRequest.StatusCode.Value);
+
+            var loginRequest = (OkObjectResult)userController.LoginUser(new LoginModel
+            {
+                UserNameOrEmail = model.UserName,
+                Password = model.Password
+            });
+
+            Assert.Equal(200, loginRequest.StatusCode.Value);
+        }
     }
 }
