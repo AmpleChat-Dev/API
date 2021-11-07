@@ -25,4 +25,10 @@
     <ProjectReference Include="..\AmpleChat API\AmpleChat API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="AmpleChatLibrary">
+      <HintPath>..\..\..\AmpleChatLibrary\AmpleChatLibrary\bin\Release\net5.0\AmpleChatLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
