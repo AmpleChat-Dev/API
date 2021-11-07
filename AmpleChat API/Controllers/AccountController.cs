@@ -1,17 +1,17 @@
 ﻿using AmpleChat_API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AmpleChat_API.Services.Models;
+using AmpleChatLibrary.User;
 
 namespace AmpleChat_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class AccountController : ControllerBase
     {
         private readonly UserService userService;
 
-        public UserController(UserService uss)
+        public AccountController(UserService uss)
         {
             userService = uss;
         }

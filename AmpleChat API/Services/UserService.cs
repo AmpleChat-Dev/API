@@ -1,6 +1,6 @@
 ﻿using AmpleChat_API.Database;
 using AmpleChat_API.Database.Models;
-using AmpleChat_API.Services.Models;
+using AmpleChatLibrary.User;
 using System.Threading.Tasks;
 using System.Linq;
 using static BCrypt.Net.BCrypt;

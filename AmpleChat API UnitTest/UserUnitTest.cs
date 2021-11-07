@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using AmpleChat_API.Controllers;
 using AmpleChat_API.Services;
 using AmpleChat_API.Database;
-using AmpleChat_API.Services.Models;
+using AmpleChatLibrary.User;
 using Xunit;
 
 namespace AmpleChat_API_UnitTest
@@ -61,7 +61,7 @@ namespace AmpleChat_API_UnitTest
         {
             var userService = new UserService(CreateDbService("test1"));
 
-            var userController = new UserController(userService);
+            var userController = new AccountController(userService);
 
             var model = CreateValidRegisterModel();
 
@@ -75,7 +75,7 @@ namespace AmpleChat_API_UnitTest
         {
             var userService = new UserService(CreateDbService("test2"));
 
-            var userController = new UserController(userService);
+            var userController = new AccountController(userService);
 
             var model = CreateInValidRegisterModel();
 
@@ -89,7 +89,7 @@ namespace AmpleChat_API_UnitTest
         {
             var userService = new UserService(CreateDbService("test3"));
 
-            var userController = new UserController(userService);
+            var userController = new AccountController(userService);
 
             var model = CreateValidRegisterModel();
 
@@ -107,7 +107,7 @@ namespace AmpleChat_API_UnitTest
         {
             var userService = new UserService(CreateDbService("test4"));
 
-            var userController = new UserController(userService);
+            var userController = new AccountController(userService);
 
             var model = CreateValidRegisterModel();
 
