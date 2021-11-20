@@ -5,7 +5,7 @@ namespace AmpleChat_API.Database
 {
     public class DatabaseService : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         public DbSet<ContactRequest> ContactRequests { get; set; }
 
@@ -22,14 +22,14 @@ namespace AmpleChat_API.Database
             base.OnModelCreating(modelbuilder);
 
             // One to many, user & contacts
-            modelbuilder.Entity<User>()
+            modelbuilder.Entity<Account>()
                 .HasMany(i => i.Contacts)
                 .WithOne()
                 .OnDelete(DeleteBehavior.NoAction);
 
 
             // One to many, user & contactrequest
-            modelbuilder.Entity<User>()
+            modelbuilder.Entity<Account>()
                 .HasMany(i => i.ContactRequests)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)
@@ -37,7 +37,7 @@ namespace AmpleChat_API.Database
 
 
             // One to many, user & message
-            modelbuilder.Entity<User>()
+            modelbuilder.Entity<Account>()
                 .HasMany(i => i.Messages)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)

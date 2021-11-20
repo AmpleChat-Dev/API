@@ -9,9 +9,9 @@ namespace AmpleChat_API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserService userService;
+        private readonly AccountService userService;
 
-        public AccountController(UserService uss)
+        public AccountController(AccountService uss)
         {
             userService = uss;
         }
@@ -22,7 +22,7 @@ namespace AmpleChat_API.Controllers
             if(!ModelState.IsValid)
                 return BadRequest("Model not complete");
 
-            if (!userService.SingIn(model))
+            if (!userService.PasswordLogin(model))
                 return BadRequest("Login failed");
 
             return Ok("Login success");
@@ -34,10 +34,10 @@ namespace AmpleChat_API.Controllers
             if (!ModelState.IsValid || !model.IsValid())
                 return BadRequest("Model not complete");
 
-            if (userService.UserExists(model.Email, model.UserName))
+            if (userService.AccountExists(model.Email, model.UserName))
                 return BadRequest("This email/username has already been taken");
 
-            var userCreated = await userService.SignUp(model);
+            var userCreated = await userService.RegisterAccount(model);
              
             if (userCreated)
                 return Ok("User created");

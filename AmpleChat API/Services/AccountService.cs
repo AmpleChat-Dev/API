@@ -7,31 +7,31 @@ using static BCrypt.Net.BCrypt;
 
 namespace AmpleChat_API.Services
 {
-    public class UserService
+    public class AccountService
     {
         private readonly DatabaseService databaseService;
-        public UserService(DatabaseService dbs)
+        public AccountService(DatabaseService dbs)
         {
             databaseService = dbs;
         }
 
-        public bool SingIn(LoginModel model)
+        public bool PasswordLogin(LoginModel model)
         {
-            if (!UserExists(model.UserNameOrEmail, model.UserNameOrEmail))
+            if (!AccountExists(model.UserNameOrEmail, model.UserNameOrEmail))
                 return false;
 
-            var user = databaseService.Users.Where(i => i.Email == model.UserNameOrEmail || i.UserName == model.UserNameOrEmail).FirstOrDefault();
+            var user = databaseService.Accounts.Where(i => i.Email == model.UserNameOrEmail || i.UserName == model.UserNameOrEmail).FirstOrDefault();
 
             return Verify(model.Password, user.Password);
         }
 
-        public async Task<bool> SignUp(RegisterModel model)
+        public async Task<bool> RegisterAccount(RegisterModel model)
         {
             // need to check  how secure the password is
             // hash password
             var passwordHash = HashPassword(model.Password);
 
-            await databaseService.Users.AddAsync(new User
+            await databaseService.Accounts.AddAsync(new Account
             {
                 UserName = model.UserName,
                 Email = model.Email,
@@ -43,9 +43,9 @@ namespace AmpleChat_API.Services
             return true;
         }
 
-        public bool UserExists(string email, string username)
+        public bool AccountExists(string email, string username)
         {
-            var result = databaseService.Users.Where(i => i.Email == email || i.UserName == username).FirstOrDefault();
+            var result = databaseService.Accounts.Where(i => i.Email == email || i.UserName == username).FirstOrDefault();
 
             if (result == null)
                 return false;
