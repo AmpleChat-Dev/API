@@ -1,10 +1,9 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using AmpleChat_API.Controllers;
 using AmpleChat_API.Services;
 using AmpleChat_API.Database;
-using AmpleChatLibrary.User;
+using AmpleChat_API.Controllers.Models;
 using Xunit;
 
 namespace AmpleChat_API_UnitTest
