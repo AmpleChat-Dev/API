@@ -1,7 +1,7 @@
 ﻿using AmpleChat_API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AmpleChatLibrary.User;
+using AmpleChat_API.Controllers.Models;
 
 namespace AmpleChat_API.Controllers
 {

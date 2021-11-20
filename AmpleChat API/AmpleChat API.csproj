@@ -21,14 +21,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Database\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="AmpleChatLibrary">
-      <HintPath>..\..\..\AmpleChatLibrary\AmpleChatLibrary\bin\Release\net5.0\AmpleChatLibrary.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
