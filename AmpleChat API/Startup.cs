@@ -40,7 +40,7 @@ namespace AmpleChat_API
                 config.UseSqlServer(Configuration["ConnectionStrings:LOCAL"]);
             });
 #endif
-            services.AddTransient<UserService>();
+            services.AddTransient<AccountService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
