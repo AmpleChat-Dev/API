@@ -37,7 +37,7 @@ namespace AmpleChat_API
             });
 #else
             services.AddDbContext<DatabaseService>(config => {
-                config.UseSqlServer(Configuration["ConnectionStrings:DEV"]);
+                config.UseSqlServer(Configuration["ConnectionStrings:LOCAL"]);
             });
 #endif
             services.AddTransient<UserService>();
