@@ -41,6 +41,7 @@ namespace AmpleChat_API
             });
 #endif
             services.AddTransient<AccountService>();
+            services.AddTransient<ChatService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
