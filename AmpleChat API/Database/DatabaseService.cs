@@ -7,9 +7,9 @@ namespace AmpleChat_API.Database
     {
         public DbSet<Account> Accounts { get; set; }
 
-        public DbSet<ContactRequest> ContactRequests { get; set; }
+        //public DbSet<ContactRequest> ContactRequests { get; set; }
 
-        public DbSet<ChatMessage> ChatMessages { get; set; }
+        //public DbSet<ChatMessage> ChatMessages { get; set; }
 
         public DatabaseService(DbContextOptions<DatabaseService> options)
         : base(options)
@@ -29,19 +29,19 @@ namespace AmpleChat_API.Database
 
 
             // One to many, user & contactrequest
-            modelbuilder.Entity<Account>()
-                .HasMany(i => i.ContactRequests)
-                .WithOne(i => i.User)
-                .HasForeignKey(i => i.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+            //modelbuilder.Entity<Account>()
+            //    .HasMany(i => i.ContactRequests)
+            //    .WithOne(i => i.User)
+            //    .HasForeignKey(i => i.UserId)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
 
-            // One to many, user & message
-            modelbuilder.Entity<Account>()
-                .HasMany(i => i.Messages)
-                .WithOne(i => i.User)
-                .HasForeignKey(i => i.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
+            //// One to many, user & message
+            //modelbuilder.Entity<Account>()
+            //    .HasMany(i => i.Messages)
+            //    .WithOne(i => i.User)
+            //    .HasForeignKey(i => i.UserId)
+            //    .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
