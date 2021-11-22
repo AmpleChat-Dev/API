@@ -17,8 +17,7 @@ namespace AmpleChat_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult SignIn([FromBody] LoginModel model)
-        {
+        public IActionResult SignIn([FromBody] LoginModel model) {
             if(!ModelState.IsValid)
                 return BadRequest("Model not complete");
 
@@ -29,8 +28,7 @@ namespace AmpleChat_API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> CreateUser([FromBody] RegisterModel model)
-        {
+        public async Task<IActionResult> CreateUser([FromBody] RegisterModel model) {
             if (!ModelState.IsValid || !model.IsValid())
                 return BadRequest("Model not complete");
 
