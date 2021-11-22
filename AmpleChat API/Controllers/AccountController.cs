@@ -26,6 +26,7 @@ namespace AmpleChat_API.Controllers
                 return BadRequest("Login failed");
 
             return Ok("Login success");
+
         }
 
         [HttpPut]
